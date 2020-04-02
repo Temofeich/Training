@@ -7,13 +7,13 @@ public class Training1 {
         double z;
 
         // z = ((a - 3 )* b / 2) + c
-        a = 7.4;
-        b = 3.2;
-        c = 5.1;
+        a = 3;
+        b = 4;
+        c = 5;
         z = ((a - 3) * b / 2) + c;
         System.out.println(z);
 
-        double v = 45;
+        double v = 90;
         double n;
         n = Math.sin(v);
         System.out.println(n);
