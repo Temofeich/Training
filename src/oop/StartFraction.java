@@ -1,6 +1,6 @@
 package oop;
 
-public class Main {
+public class StartFraction {
     public static void main(String[] args) {
 
      Fraction fr1 = new Fraction(1,3);
