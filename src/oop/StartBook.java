@@ -3,7 +3,7 @@ package oop;
 public class StartBook {
     public static void main(String[] args) {
 
-        Book book1 = new Book("Java", "Ekkel", 300);
+        Book book1 = new Book("Java", "Ekkel", 350);
         System.out.println(book1.getTitle());
         System.out.println(book1.getAuthor());
         System.out.println(book1.getPrice());
