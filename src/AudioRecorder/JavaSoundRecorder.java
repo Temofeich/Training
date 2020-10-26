@@ -18,8 +18,7 @@ public class JavaSoundRecorder {
     private DbxClientV2 client;
     private String fileName;
 
-    public JavaSoundRecorder()
-    {
+    public JavaSoundRecorder() {
         DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/java-tutorial").build();
         String ACCESS_TOKEN = "CSVV217mb98AAAAAAAAAAYmwT2CgfteTlQvh08zOcrahxP713H3bl0n6LUJyktWJ";
         client = new DbxClientV2(config, ACCESS_TOKEN);
@@ -33,12 +32,10 @@ public class JavaSoundRecorder {
                 channels, signed, bigEndian);
     }
 
-    public void start(File file)
-    {
+    public void start(File file) {
         Thread thread = new Thread(() ->
         {
-            try
-            {
+            try {
                 DataLine.Info info =
                         new DataLine.Info(TargetDataLine.class, format);
                 line = (TargetDataLine) AudioSystem.getLine(info);
@@ -47,39 +44,30 @@ public class JavaSoundRecorder {
 
                 AudioInputStream ais = new AudioInputStream(line);
                 AudioSystem.write(ais, fileType, file);
-            }
-            catch (LineUnavailableException | IOException ex)
-            {
+            } catch (LineUnavailableException | IOException ex) {
                 ex.printStackTrace();
             }
         });
         thread.start();
     }
 
-    public void stop( File file, int seconds)
-    {
+    public void stop(File file, int seconds) {
         Thread thread = new Thread(() ->
         {
-            try
-            {
+            try {
                 Thread.sleep(1000 * seconds);
-            }
-            catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
             line.stop();
             line.close();
 
-            try
-            {
+            try {
                 InputStream in = new FileInputStream(file);
                 client.files().uploadBuilder("/" + fileName + ".wav")
                         .uploadAndFinish(in);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             recordAudio(30);
@@ -87,8 +75,7 @@ public class JavaSoundRecorder {
         thread.start();
     }
 
-    public void recordAudio(int seconds)
-    {
+    public void recordAudio(int seconds) {
         Date dateNow = new Date();
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
         fileName = formatForDateNow.format(dateNow);

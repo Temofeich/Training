@@ -30,10 +30,10 @@ public class PrintOddColumn {
     }
 
     public static void printOddColumn(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j += 2) {
+        for (int[] ints : matrix) {
+            for (int j = 0; j < ints.length; j += 2) {
                 if (matrix[0][j] > matrix[matrix.length - 1][j]) {
-                    System.out.printf( "%4d", matrix[i][j]);
+                    System.out.printf("%4d", ints[j]);
                 }
             }
             System.out.println();
